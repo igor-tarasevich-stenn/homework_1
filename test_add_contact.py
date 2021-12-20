@@ -5,6 +5,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
 from contact import Contact
+from selenium.webdriver.common.by import By
 
 
 class TestAddContact(unittest.TestCase):
@@ -23,48 +24,48 @@ class TestAddContact(unittest.TestCase):
 
     def logout(self, wd):
         # logout
-        wd.find_element("link text", "Logout").click()
+        wd.find_element(By.LINK_TEXT, "Logout").click()
 
     def return_to_home_page(self, wd):
         # return to home page
-        wd.find_element("link text", "home page").click()
+        wd.find_element(By.LINK_TEXT, "home page").click()
 
     def add_contact(self, wd, contact):
         # add contact
-        wd.find_element("name", "firstname").click()
-        wd.find_element("name", "firstname").clear()
-        wd.find_element("name", "firstname").send_keys(contact.name)
-        wd.find_element("name", "lastname").click()
-        wd.find_element("name", "lastname").clear()
-        wd.find_element("name", "lastname").send_keys(contact.lastname)
-        wd.find_element("name", "company").click()
-        wd.find_element("name", "company").clear()
-        wd.find_element("name", "company").send_keys(contact.company)
-        wd.find_element("name", "home").click()
-        wd.find_element("name", "home").clear()
-        wd.find_element("name", "home").send_keys(contact.home_tel)
-        wd.find_element("name", "email").click()
-        wd.find_element("name", "email").clear()
-        wd.find_element("name", "email").send_keys(contact.email)
-        wd.find_element("name", "bday").click()
-        Select(wd.find_element("name", "bday")).select_by_visible_text(contact.bday)
+        wd.find_element(By.NAME, "firstname").click()
+        wd.find_element(By.NAME, "firstname").clear()
+        wd.find_element(By.NAME, "firstname").send_keys(contact.name)
+        wd.find_element(By.NAME, "lastname").click()
+        wd.find_element(By.NAME, "lastname").clear()
+        wd.find_element(By.NAME, "lastname").send_keys(contact.lastname)
+        wd.find_element(By.NAME, "company").click()
+        wd.find_element(By.NAME, "company").clear()
+        wd.find_element(By.NAME, "company").send_keys(contact.company)
+        wd.find_element(By.NAME, "home").click()
+        wd.find_element(By.NAME, "home").clear()
+        wd.find_element(By.NAME, "home").send_keys(contact.home_tel)
+        wd.find_element(By.NAME, "email").click()
+        wd.find_element(By.NAME, "email").clear()
+        wd.find_element(By.NAME, "email").send_keys(contact.email)
+        wd.find_element(By.NAME, "bday").click()
+        Select(wd.find_element(By.NAME, "bday")).select_by_visible_text(contact.bday)
         wd.find_element("xpath", "//option[@value='15']").click()
-        wd.find_element("name", "bmonth").click()
-        Select(wd.find_element("name", "bmonth")).select_by_visible_text(contact.bmonth)
+        wd.find_element(By.NAME, "bmonth").click()
+        Select(wd.find_element(By.NAME, "bmonth")).select_by_visible_text(contact.bmonth)
         wd.find_element("xpath", "//option[@value='October']").click()
-        wd.find_element("name", "byear").click()
-        wd.find_element("name", "byear").clear()
-        wd.find_element("name", "byear").send_keys(contact.byear)
-        wd.find_element("xpath", "//div[@id='content']/form/input[21]").click()
+        wd.find_element(By.NAME, "byear").click()
+        wd.find_element(By.NAME, "byear").clear()
+        wd.find_element(By.NAME, "byear").send_keys(contact.byear)
+        wd.find_element(By.XPATH, "//div[@id='content']/form/input[21]").click()
 
     def login(self, wd, username, password):
         # login
-        wd.find_element("name", "user").click()
-        wd.find_element("name", "user").clear()
-        wd.find_element("name", "user").send_keys(username)
-        wd.find_element("name", "pass").clear()
-        wd.find_element("name", "pass").send_keys(password)
-        wd.find_element("xpath", "//input[@value='Login']").click()
+        wd.find_element(By.NAME, "user").click()
+        wd.find_element(By.NAME, "user").clear()
+        wd.find_element(By.NAME, "user").send_keys(username)
+        wd.find_element(By.NAME, "pass").clear()
+        wd.find_element(By.NAME, "pass").send_keys(password)
+        wd.find_element(By.XPATH, "//input[@value='Login']").click()
 
     def go_to_home_page(self, wd):
         # go to home page
