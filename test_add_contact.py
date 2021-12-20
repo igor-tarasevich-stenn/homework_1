@@ -13,15 +13,21 @@ class TestAddContact(unittest.TestCase):
 
     def test_add_contact(self):
         wd = self.wd
-        # go to home page
-        wd.get("http://localhost/addressbook/edit.php")
-        # login
-        wd.find_element("name", "user").click()
-        wd.find_element("name", "user").clear()
-        wd.find_element("name", "user").send_keys("admin")
-        wd.find_element("name", "pass").clear()
-        wd.find_element("name", "pass").send_keys("secret")
-        wd.find_element("xpath", "//input[@value='Login']").click()
+        self.go_to_home_page(wd)
+        self.login(wd)
+        self.add_contact(wd)
+        self.return_to_home_page(wd)
+        self.logout(wd)
+
+    def logout(self, wd):
+        # logout
+        wd.find_element("link text", "Logout").click()
+
+    def return_to_home_page(self, wd):
+        # return to home page
+        wd.find_element("link text", "home page").click()
+
+    def add_contact(self, wd):
         # add contact
         wd.find_element("name", "firstname").click()
         wd.find_element("name", "firstname").clear()
@@ -48,10 +54,19 @@ class TestAddContact(unittest.TestCase):
         wd.find_element("name", "byear").clear()
         wd.find_element("name", "byear").send_keys("1995")
         wd.find_element("xpath", "//div[@id='content']/form/input[21]").click()
-        # go back to home page
-        wd.find_element("link text", "home page").click()
-        # logout
-        wd.find_element("link text", "Logout").click()
+
+    def login(self, wd):
+        # login
+        wd.find_element("name", "user").click()
+        wd.find_element("name", "user").clear()
+        wd.find_element("name", "user").send_keys("admin")
+        wd.find_element("name", "pass").clear()
+        wd.find_element("name", "pass").send_keys("secret")
+        wd.find_element("xpath", "//input[@value='Login']").click()
+
+    def go_to_home_page(self, wd):
+        # go to home page
+        wd.get("http://localhost/addressbook/edit.php")
 
     def is_element_present(self, how, what):
         try:
