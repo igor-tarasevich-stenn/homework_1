@@ -16,7 +16,8 @@ class TestAddContact(unittest.TestCase):
         wd = self.wd
         self.go_to_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.add_contact(wd, Contact(name="name1", lastname="lastname1", company="test1", home_tel="1231", email="test1@mail.com", bday="11", bmonth="September", byear="1992"))
+        self.add_contact(wd, Contact(name="name1", lastname="lastname1", company="test1", home_tel="1231",
+                                     email="test1@mail.com", bday="11", bmonth="September", byear="1992"))
         self.return_to_home_page(wd)
         self.logout(wd)
 
