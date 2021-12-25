@@ -15,7 +15,7 @@ class Application_contact:
 
     def login(self, username, password):
         wd = self.wd
-        self.go_to_home_page(wd)
+        self.go_to_home_page()
         # login
         wd.find_element(By.NAME, "user").click()
         wd.find_element(By.NAME, "user").clear()
