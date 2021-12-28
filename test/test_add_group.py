@@ -13,5 +13,5 @@ def app(request):
 
 def test_add_group(app):
     app.session.login(username="admin", password="secret")
-    app.create_group(Group(name="qwerty", header="qwerty", footer="qwerty"))
+    app.group.create(Group(name="qwerty", header="qwerty", footer="qwerty"))
     app.session.logout()
