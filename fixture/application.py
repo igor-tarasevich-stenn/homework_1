@@ -93,7 +93,6 @@ class Application:
         # return to home page
         wd.find_element(By.LINK_TEXT, "home page").click()
 
-
     def logout(self):
         wd = self.wd
         # logout
