@@ -47,8 +47,7 @@ class ContactHelper:
         wd.find_element(By.NAME, "selected[]").click()
         # init deletion
         wd.find_element(By.XPATH, "//input[@value='Delete']").click()
-        wd.switch_to.alert().accept()
-        self.return_to_home_page()
+        wd.switch_to.alert.accept()
 
     def return_to_home_page(self):
         wd = self.app.wd
