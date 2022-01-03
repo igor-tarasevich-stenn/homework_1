@@ -49,6 +49,38 @@ class ContactHelper:
         wd.find_element(By.XPATH, "//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
 
+    def edit_first_contact(self, contact):
+        wd = self.app.wd
+        wd.find_element(By.XPATH, "//img[@alt='Edit']").click()
+        self.fill_contact_fields(contact)
+        wd.find_element(By.NAME, "update").click()
+        self.return_to_home_page()
+
+    def fill_contact_fields(self, contact):
+        wd = self.app.wd
+        wd.find_element(By.NAME, "firstname").click()
+        wd.find_element(By.NAME, "firstname").clear()
+        wd.find_element(By.NAME, "firstname").send_keys(contact.name)
+        wd.find_element(By.NAME, "lastname").click()
+        wd.find_element(By.NAME, "lastname").clear()
+        wd.find_element(By.NAME, "lastname").send_keys(contact.lastname)
+        wd.find_element(By.NAME, "company").click()
+        wd.find_element(By.NAME, "company").clear()
+        wd.find_element(By.NAME, "company").send_keys(contact.company)
+        wd.find_element(By.NAME, "home").click()
+        wd.find_element(By.NAME, "home").clear()
+        wd.find_element(By.NAME, "home").send_keys(contact.home_tel)
+        wd.find_element(By.NAME, "email").click()
+        wd.find_element(By.NAME, "email").clear()
+        wd.find_element(By.NAME, "email").send_keys(contact.email)
+        wd.find_element(By.NAME, "bday").click()
+        Select(wd.find_element(By.NAME, "bday")).select_by_visible_text(contact.bday)
+        wd.find_element(By.NAME, "bmonth").click()
+        Select(wd.find_element(By.NAME, "bmonth")).select_by_visible_text(contact.bmonth)
+        wd.find_element(By.NAME, "byear").click()
+        wd.find_element(By.NAME, "byear").clear()
+        wd.find_element(By.NAME, "byear").send_keys(contact.byear)
+
     def return_to_home_page(self):
         wd = self.app.wd
         # return to home page
