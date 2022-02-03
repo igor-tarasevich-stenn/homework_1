@@ -12,6 +12,10 @@ class ContactHelper:
         # go to home page
         wd.get("http://localhost/addressbook/edit.php")
 
+    def open_home_page(self):
+        wd = self.app.wd
+        wd.get("http://localhost/addressbook/")
+
     def add(self, contact):
         wd = self.app.wd
         # add contact
@@ -43,6 +47,7 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.open_home_page()
         # select first contact
         wd.find_element(By.NAME, "selected[]").click()
         # init deletion
@@ -51,6 +56,7 @@ class ContactHelper:
 
     def edit_first_contact(self, contact):
         wd = self.app.wd
+        self.open_home_page()
         wd.find_element(By.XPATH, "//img[@alt='Edit']").click()
         self.fill_contact_fields(contact)
         wd.find_element(By.NAME, "update").click()
