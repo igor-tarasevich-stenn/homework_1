@@ -70,3 +70,10 @@ class ContactHelper:
         wd = self.app.wd
         # return to home page
         wd.find_element(By.LINK_TEXT, "home page").click()
+
+    def count(self):
+        wd = self.app.wd
+        self.open_contacts_page()
+        return len(wd.find_element(By.NAME, "selected[]"))
+
+
