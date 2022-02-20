@@ -43,28 +43,23 @@ class ContactHelper:
 
     def fill_contact_fields(self, contact):
         wd = self.app.wd
-        wd.find_element(By.NAME, "firstname").click()
-        wd.find_element(By.NAME, "firstname").clear()
-        wd.find_element(By.NAME, "firstname").send_keys(contact.name)
-        wd.find_element(By.NAME, "lastname").click()
-        wd.find_element(By.NAME, "lastname").clear()
-        wd.find_element(By.NAME, "lastname").send_keys(contact.lastname)
-        wd.find_element(By.NAME, "company").click()
-        wd.find_element(By.NAME, "company").clear()
-        wd.find_element(By.NAME, "company").send_keys(contact.company)
-        wd.find_element(By.NAME, "home").click()
-        wd.find_element(By.NAME, "home").clear()
-        wd.find_element(By.NAME, "home").send_keys(contact.home_tel)
-        wd.find_element(By.NAME, "email").click()
-        wd.find_element(By.NAME, "email").clear()
-        wd.find_element(By.NAME, "email").send_keys(contact.email)
+        self.change_field_value("firstname", contact.name)
+        self.change_field_value("lastname", contact.lastname)
+        self.change_field_value("company", contact.company)
+        self.change_field_value("home", contact.home_tel)
+        self.change_field_value("email", contact.email)
         wd.find_element(By.NAME, "bday").click()
         Select(wd.find_element(By.NAME, "bday")).select_by_visible_text(contact.bday)
         wd.find_element(By.NAME, "bmonth").click()
         Select(wd.find_element(By.NAME, "bmonth")).select_by_visible_text(contact.bmonth)
-        wd.find_element(By.NAME, "byear").click()
-        wd.find_element(By.NAME, "byear").clear()
-        wd.find_element(By.NAME, "byear").send_keys(contact.byear)
+        self.change_field_value("byear", contact.byear)
+
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element(By.NAME, field_name).click()
+            wd.find_element(By.NAME, field_name).clear()
+            wd.find_element(By.NAME, field_name).send_keys(text)
 
     def return_to_home_page(self):
         wd = self.app.wd
@@ -73,7 +68,7 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        self.open_contacts_page()
-        return len(wd.find_element(By.NAME, "selected[]"))
+        self.open_home_page()
+        return len(wd.find_elements(By.NAME, "selected[]"))
 
 
