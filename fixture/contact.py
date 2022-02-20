@@ -9,8 +9,8 @@ class ContactHelper:
 
     def open_contacts_page(self):
         wd = self.app.wd
-        # go to home page
-        wd.get("http://localhost/addressbook/edit.php")
+        if not (len(wd.find_elements(By.XPATH, "//div[@id='content']/label/strong")) > 0):
+            wd.get("http://localhost/addressbook/edit.php")
 
     def open_home_page(self):
         wd = self.app.wd
