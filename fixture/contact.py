@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from model.contact import Contact
 
 
 class ContactHelper:
@@ -9,8 +10,8 @@ class ContactHelper:
 
     def open_contacts_page(self):
         wd = self.app.wd
-        if not (len(wd.find_elements(By.XPATH, "//div[@id='content']/label/strong")) > 0):
-            wd.get("http://localhost/addressbook/edit.php")
+        if not (len(wd.find_elements(By.NAME, "photo")) > 0):
+            wd.find_element(By.LINK_TEXT, "add new").click()
 
     def open_home_page(self):
         wd = self.app.wd
@@ -70,5 +71,16 @@ class ContactHelper:
         wd = self.app.wd
         self.open_home_page()
         return len(wd.find_elements(By.NAME, "selected[]"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.open_home_page()
+        contacts = []
+        for element in wd.find_elements(By.NAME, "entry"):
+            id = element.find_element(By.NAME, "selected[]").get_attribute("value")
+            last_name = element.find_element(By.XPATH, "//table[@id='maintable']/tbody/tr/td[2]")
+            first_name = element.find_element(By.XPATH, "//table[@id='maintable']/tbody/tr/td[3]")
+            contacts.append(Contact(name=first_name, lastname=last_name, id=id))
+        return contacts
 
 
